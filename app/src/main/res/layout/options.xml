@@ -12,7 +12,7 @@
         android:layout_marginEnd="251dp"
         android:layout_marginBottom="323dp"
         android:text="Options"
-        android:textColor="#bdfcf2"
+        android:textColor="#FFFFFF"
         android:textSize="50dp" />
 
     <Button
@@ -25,7 +25,7 @@
     android:layout_marginBottom="250dp"
     android:background="@drawable/orangebtn"
     android:text="SFX"
-    android:textColor="#bdfcf2"
+    android:textColor="#FFFFFF"
     android:textSize="18dp" />
 
     <Button
@@ -38,7 +38,7 @@
     android:layout_marginBottom="175dp"
     android:background="@drawable/orangebtn"
     android:text="Music"
-    android:textColor="#bdfcf2"
+    android:textColor="#FFFFFF"
     android:textSize="18dp" />
 
     <Button
@@ -51,7 +51,7 @@
     android:layout_marginBottom="80dp"
     android:background="@drawable/orangebtn"
     android:text="Vibration"
-    android:textColor="#bdfcf2"
+    android:textColor="#FFFFFF"
     android:textSize="18dp" />
 
     <Button
@@ -64,7 +64,7 @@
     android:layout_marginBottom="0dp"
     android:background="@drawable/orangebtn"
     android:text="Back"
-    android:textColor="#bdfcf2"
+    android:textColor="#FFFFFF"
     android:textSize="18dp" />
 
 

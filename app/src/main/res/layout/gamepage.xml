@@ -12,7 +12,7 @@
         android:layout_marginEnd="181dp"
         android:layout_marginBottom="310dp"
         android:text="Game Screen"
-        android:textColor="#bdfcf2"
+        android:textColor="#FFFFFF"
         android:textSize="50dp" />
 
 </RelativeLayout>

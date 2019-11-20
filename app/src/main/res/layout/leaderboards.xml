@@ -12,7 +12,7 @@
         android:layout_marginEnd="211dp"
         android:layout_marginBottom="319dp"
         android:text="Leaderboards"
-        android:textColor="#bdfcf2"
+        android:textColor="#FFFFFF"
         android:textSize="50dp" />
 
     <Button
@@ -25,7 +25,7 @@
         android:layout_marginBottom="42dp"
         android:background="@drawable/orangebtn"
         android:text="Back"
-        android:textColor="#bdfcf2"
+        android:textColor="#FFFFFF"
         android:textSize="18dp" />
 
 </RelativeLayout>

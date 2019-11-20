@@ -17,8 +17,7 @@ public class GamePage extends Activity
     {
         super.onCreate(savedInstancedState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide the title upon the display. As we are creating a game,
-        //, we do not need that
+        requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide the title upon the display. As we are creating a game, we do not need that
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // The above code is to allow the display to be fullscreen.
         setContentView(R.layout.gamepage);
