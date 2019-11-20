@@ -50,5 +50,13 @@
             <category android:name = "android.intent.category.DEFAULT"/>
         </intent-filter>
     </activity>
+
+    <activity android:name = ".GamePage"
+        android:screenOrientation = "landscape"> <!-- Add information of the activity class:MainMenu -->
+        <intent-filter>
+            <action android:name = "android.intent.action.MAIN"/> <!-- Always "MAIN" -->
+            <category android:name = "android.intent.category.DEFAULT"/>
+        </intent-filter>
+    </activity>
     </application>
 </manifest>

@@ -3,21 +3,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-
 public class Tutorial extends Activity
 {
-
     // Define a few parameters
-
     protected boolean _active = true;
 
     @Override // An annotation to assure that the subclass method is overriding the parent class method.
     // If it is not able to do so, compile with error will occur.
-
     protected void onCreate(Bundle savedInstancedState)
     {
         super.onCreate(savedInstancedState);
@@ -29,7 +24,7 @@ public class Tutorial extends Activity
         setContentView(R.layout.tutorial);
 
 
-        Thread tutorialthread = new Thread()
+        Thread tutorialThread = new Thread()
         {
             public void run()
             {
@@ -43,7 +38,7 @@ public class Tutorial extends Activity
                 }
             }
         };// Create a new instance of an object for this case is a thread
-        tutorialthread.start(); // To start the thread running
+        tutorialThread.start(); // To start the thread running
     }
 
 

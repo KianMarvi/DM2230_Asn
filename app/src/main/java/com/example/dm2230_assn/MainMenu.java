@@ -54,7 +54,7 @@ public class MainMenu extends Activity implements OnClickListener
 
         if (v == btn_start)
         {
-            intent.setClass(this, SplashPage.class);
+            intent.setClass(this, GamePage.class);
             // If press start button, it should go from the current class to another class
             // For now, we do not have other activity class to transit to so we go back to and from to Splash page.
         }

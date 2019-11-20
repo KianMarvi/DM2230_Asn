@@ -8,8 +8,7 @@ import android.view.WindowManager;
 
 public class GamePage extends Activity
 {
-// Define a few parameters
-
+    // Define a few parameters
     protected boolean _active = true;
 
     @Override // An annotation to assure that the subclass method is overriding the parent class method.
@@ -62,11 +61,7 @@ public class GamePage extends Activity
         super.onPause();
     }
     @Override
-    protected void onStop()
-    {
-        super.onStop();
-
-    }
+    protected void onStop() { super.onStop(); }
     @Override
     protected void onDestroy()
     {
