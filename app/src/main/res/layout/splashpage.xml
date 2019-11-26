@@ -26,4 +26,16 @@
     <!-- To add a background for the splash page and want to make it landscape -->
 
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="106dp"
+        android:layout_height="107dp"
+        android:indeterminateTint="@color/colorPrimaryDark"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="635dp"
+        android:layout_marginBottom="15dp" />
+
+
 </RelativeLayout>

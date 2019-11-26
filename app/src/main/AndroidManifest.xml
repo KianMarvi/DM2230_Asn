@@ -6,7 +6,8 @@
     android:label="@string/app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    android:screenOrientation = "landscape">
 
     <activity android:name = ".SplashPage"
         android:screenOrientation = "landscape"> <!-- Add information of the activity class:Splashpage -->

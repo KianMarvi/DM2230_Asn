@@ -1,20 +1,24 @@
 package com.example.dm2230_assn;
 import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+import android.graphics.Canvas;
+import android.view.SurfaceView;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.view.View.OnClickListener;
+import android.content.Intent;
 
-public class MainMenu extends Activity implements OnClickListener
+public class MainMenu extends Activity implements OnClickListener, StateBase
 {
     private Button btn_start;
 
     private Button btn_options;
     private Button btn_tutorial;
     private Button btn_leaderboards;
+   // MediaPlayer music;
+
 
     @Override // An annotation to assure that the subclass method is overriding the parent class method.
     // If it is not able to do so, compile with error will occur.
@@ -41,12 +45,19 @@ public class MainMenu extends Activity implements OnClickListener
         btn_tutorial.setOnClickListener(this);
         btn_leaderboards = (Button)findViewById(R.id.btn_leaderboards);
         btn_leaderboards.setOnClickListener(this);
+
+
+        //music = MediaPlayer.create(MainMenu.this, R.raw.music);
+        //music.start();
+       // music.setLooping(true);
+       // music.setVolume(100, 100);
+
     }
 
     @Override
     public void onClick(View v) // Invoke a callback on clicked on an event in a view
     {
-        // For an event to occur or action to happem, as explained in Video 2-3 when creatimg the androidmanifest.xml.
+        // For an event to occur or action to happen, as explained in Video 2-3 when creating the androidmanifest.xml.
 
         Intent intent = new Intent();
         // Intent is an action to be performed.
@@ -75,18 +86,38 @@ public class MainMenu extends Activity implements OnClickListener
     }
 
     @Override
-    protected void onPause()
-    {
+    public void Render(Canvas _canvas) {
+    }
+
+    @Override
+    public void OnEnter(SurfaceView _view) {
+    }
+
+    @Override
+    public void OnExit() {
+    }
+
+    @Override
+    public void Update(float _dt) {
+    }
+
+    @Override
+    public String GetName() {
+        return "MainMenu";
+    }
+
+    @Override
+    protected void onPause() {
         super.onPause();
     }
+
     @Override
-    protected void onStop()
-    {
+    protected void onStop() {
         super.onStop();
     }
+
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         super.onDestroy();
     }
 }

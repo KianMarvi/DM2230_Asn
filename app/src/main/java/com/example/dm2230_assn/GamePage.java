@@ -10,6 +10,7 @@ public class GamePage extends Activity
 {
     // Define a few parameters
     protected boolean _active = true;
+    public final static GamePage Instance = new GamePage();
 
     @Override // An annotation to assure that the subclass method is overriding the parent class method.
     // If it is not able to do so, compile with error will occur.
@@ -27,7 +28,7 @@ public class GamePage extends Activity
         {
             public void run()
             {
-                if (_active == false)
+                if (!_active)
                 {
                     finish();
                     // Create new activity based on and intent to do with the current activity.
