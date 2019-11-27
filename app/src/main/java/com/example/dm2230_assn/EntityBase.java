@@ -5,7 +5,8 @@ import android.view.SurfaceView;
 
 // Created by TanSiewLan2019
 
-public interface EntityBase
+public interface
+EntityBase
 {
     boolean IsDone();
     void SetIsDone(boolean _isDone);
