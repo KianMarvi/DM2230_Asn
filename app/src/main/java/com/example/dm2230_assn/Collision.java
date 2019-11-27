@@ -19,4 +19,14 @@ public class Collision {
 
         return true;
     }
+    public static boolean CheckAABBCollision(float x1, float y1, float w1, float h1, float x2, float y2, float w2, float h2)
+    {
+        float distance_x = Math.abs(x1 - x2);
+        float distance_y = Math.abs(y1 - y2);
+
+        if (distance_x < ((w1/2) + (w2/2)) && distance_y < ((w1/2) + (w2/2)))
+            return true;
+
+        return false;
+    }
 }

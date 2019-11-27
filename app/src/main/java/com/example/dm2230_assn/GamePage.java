@@ -3,8 +3,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 
 public class GamePage extends Activity
 {
@@ -12,6 +14,7 @@ public class GamePage extends Activity
     protected boolean _active = true;
     public final static GamePage Instance = new GamePage();
     float dt = 1.f;
+    private Button btn_moveright;
 
     @Override // An annotation to assure that the subclass method is overriding the parent class method.
     // If it is not able to do so, compile with error will occur.
@@ -21,11 +24,8 @@ public class GamePage extends Activity
 
         requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide the title upon the display. As we are creating a game, we do not need that
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        // The above code is to allow the display to be fullscreen.
-        //setContentView(R.layout.gamepage);
 
-        setContentView(new GameView(this));
-
+        setContentView(new GameView(this)); // Scrollable background
 
         Thread gameThread = new Thread()
         {
@@ -56,6 +56,7 @@ public class GamePage extends Activity
             _active = false; // Meant timer have to stop, intent to push to main menu activity to start the main menu
         }
         return true; // From the touch event.
+
     }
 
     @Override

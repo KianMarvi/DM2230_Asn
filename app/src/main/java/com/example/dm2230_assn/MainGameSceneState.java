@@ -39,8 +39,14 @@ public class MainGameSceneState implements StateBase
     }
 
     @Override
-    public void Update(float _dt) {
-
+    public void Update(float _dt)
+    {
+        timer += _dt;
+        if (timer > 1.0f)
+        {
+            SmurfEntity.Create();
+            timer = 0.0f;
+        }
         EntityManager.Instance.Update(_dt);
 
         if (TouchManager.Instance.IsDown()) {

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.content.Intent;
+import android.media.MediaPlayer;
 
 public class MainMenu extends Activity implements OnClickListener, StateBase
 {
@@ -17,7 +18,12 @@ public class MainMenu extends Activity implements OnClickListener, StateBase
     private Button btn_options;
     private Button btn_tutorial;
     private Button btn_leaderboards;
-   // MediaPlayer music;
+    MediaPlayer music;
+
+
+    //music = MediaPlayer.
+
+
 
 
     @Override // An annotation to assure that the subclass method is overriding the parent class method.
@@ -26,6 +32,9 @@ public class MainMenu extends Activity implements OnClickListener, StateBase
     protected void onCreate(Bundle savedInstancedState)
     {
         super.onCreate(savedInstancedState);
+
+        music = MediaPlayer.create(MainMenu.this, R.raw.music);
+        music.start();
 
         requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide the title upon the display. As we are creating a game,
                                                         //, we do not need that
@@ -47,11 +56,6 @@ public class MainMenu extends Activity implements OnClickListener, StateBase
         btn_leaderboards.setOnClickListener(this);
 
 
-        //music = MediaPlayer.create(MainMenu.this, R.raw.music);
-        //music.start();
-       // music.setLooping(true);
-       // music.setVolume(100, 100);
-
     }
 
     @Override
@@ -68,6 +72,7 @@ public class MainMenu extends Activity implements OnClickListener, StateBase
             intent.setClass(this, GamePage.class);
             // If press start button, it should go from the current class to another class
             // For now, we do not have other activity class to transit to so we go back to and from to Splash page.
+            music.stop();
         }
         else if (v == btn_options)
         {
@@ -119,5 +124,6 @@ public class MainMenu extends Activity implements OnClickListener, StateBase
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        music.stop();
     }
 }
