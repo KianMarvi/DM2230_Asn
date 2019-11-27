@@ -11,7 +11,6 @@ public class GamePage extends Activity
     // Define a few parameters
     protected boolean _active = true;
     public final static GamePage Instance = new GamePage();
-    public final static MainGameSceneState gameSceneState = new MainGameSceneState();
     float dt = 1.f;
 
     @Override // An annotation to assure that the subclass method is overriding the parent class method.
@@ -23,9 +22,9 @@ public class GamePage extends Activity
         requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide the title upon the display. As we are creating a game, we do not need that
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         // The above code is to allow the display to be fullscreen.
-        setContentView(R.layout.gamepage);
+        //setContentView(R.layout.gamepage);
 
-       gameSceneState.Update(dt);
+        setContentView(new GameView(this));
 
 
         Thread gameThread = new Thread()
