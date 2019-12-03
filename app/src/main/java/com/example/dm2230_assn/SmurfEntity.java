@@ -19,6 +19,15 @@ public class SmurfEntity implements EntityBase, Collidable
 
    private int renderLayer = 0;
 
+   public void Move(SurfaceView _view)
+   {
+       spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(),R.drawable.wbc), 4,6, 30);
+   }
+    public void Idle(SurfaceView _view)
+    {
+        spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(), R.drawable.wbc_stationary), 1,1, 0);
+    }
+
 
    @Override
     public boolean IsDone()
@@ -33,16 +42,13 @@ public class SmurfEntity implements EntityBase, Collidable
    @Override
     public void Init(SurfaceView _view)
    {
-       spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(),R.drawable.whitebloodcell), 4,4, 16);
+        Move(_view);
 
- //     bmp = BitmapFactory.decodeResource(_view.getResources())
-       Random ranGen = new Random();
+       xPos =  _view.getWidth() * 0.5f;
+       yPos =  _view.getHeight() * 0.5f;
 
-       xPos = ranGen.nextFloat() * _view.getWidth();
-       yPos = ranGen.nextFloat() * _view.getHeight();
-
-       xDir = ranGen.nextFloat() * 100.0f - 50.0f;
-       yDir = ranGen.nextFloat() * 100.0f - 50.0f;
+       xDir =  100.0f - 50.0f;
+       yDir = 100.0f - 50.0f;
 
        isInit = true;
        //lifeTime = 30.0f; // Lifetime will decrease till zero, then something will happen
@@ -65,7 +71,6 @@ public class SmurfEntity implements EntityBase, Collidable
             float imgRadius = spritesheet.GetHeight() * 0.5f;
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0, xPos, yPos, imgRadius))
             {
-                xPos += xDir * _dt;
                 yPos += yDir * _dt;
 
                 SetIsDone(true);
