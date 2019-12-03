@@ -11,13 +11,13 @@ public class Sprite
     private int width = 0;
     private int height = 0;
 
-    private Bitmap bmp;
+    private Bitmap bmp = null;
 
     private int currentFrame = 0;
     private int startFrame = 0;
     private int endFrame = 0;
 
-    private float timePerFrame = 0.0f;
+    private float timePerFrame;
     private float timeAcc = 0.0f;
 
     public Sprite(Bitmap _bmp, int _row, int _col, int _fps)
@@ -26,8 +26,8 @@ public class Sprite
         row = _row;
         col = _col;
 
-        width = bmp.getWidth();
-        height = bmp.getHeight();
+        width = bmp.getWidth() / _col;
+        height = bmp.getHeight() / _row ;
 
         timePerFrame = 1.0f/(float) _fps;
         endFrame = _col * _row;
@@ -36,9 +36,11 @@ public class Sprite
     public void Update(float _dt)
     {
         timeAcc += _dt;
-        if (timeAcc > timePerFrame) {
+        if (timeAcc > timePerFrame)
+        {
             ++currentFrame;
-            if (currentFrame >= endFrame) {
+            if (currentFrame >= endFrame)
+            {
                 currentFrame = startFrame;
             }
             timeAcc = 0.0f;
@@ -65,11 +67,11 @@ public class Sprite
         endFrame = _end;
     }
 
-    public int getWidth()
+    public int GetWidth()
     {
         return width;
     }
-    public int getHeight()
+    public int GetHeight()
     {
         return height;
     }

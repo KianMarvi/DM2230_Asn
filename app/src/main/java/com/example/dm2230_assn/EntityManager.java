@@ -101,7 +101,8 @@ public class EntityManager
             }
         });
 
-        for (EntityBase currEntity : entityList) {
+        for (EntityBase currEntity : entityList)
+        {
             currEntity.Render(_canvas);
         }
     }

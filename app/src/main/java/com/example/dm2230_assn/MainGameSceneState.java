@@ -35,7 +35,6 @@ public class MainGameSceneState implements StateBase
     public void Render(Canvas _canvas)
     {
         EntityManager.Instance.Render(_canvas);
-
     }
 
     @Override

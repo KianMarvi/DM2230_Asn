@@ -2,6 +2,8 @@ package com.example.dm2230_assn;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.util.DisplayMetrics;
 import android.view.SurfaceView;
 
@@ -13,6 +15,9 @@ public class RenderBackground implements EntityBase
 
     int ScreenWidth, ScreenHeight;
     private Bitmap scaledbmp = null;
+
+    // Render Text or font
+    Typeface myFont;
 
     @Override
     public boolean IsDone() {return isDone;}
@@ -33,6 +38,8 @@ public class RenderBackground implements EntityBase
         ScreenHeight = metrics.heightPixels;
 
         scaledbmp = Bitmap.createScaledBitmap(bmp, ScreenWidth, ScreenHeight, true);
+
+       // myFont = Typeface.create(_view.getContext().getString())
     }
 
     @Override
@@ -50,6 +57,13 @@ public class RenderBackground implements EntityBase
     {
         _canvas.drawBitmap(scaledbmp, xPos, yPos, null);
         _canvas.drawBitmap(scaledbmp, xPos + ScreenWidth, yPos, null);
+
+        Paint paint = new Paint();
+        paint.setARGB(255, 255, 255,255);
+        paint.setStrokeWidth(200);
+        paint.setTypeface(myFont);
+        paint.setTextSize(70);
+        _canvas.drawText("Score: ", 200, 200, paint);
     }
 
     @Override
@@ -75,4 +89,5 @@ public class RenderBackground implements EntityBase
         EntityManager.Instance.AddEntity(result);
         return result;
     }
+
 }

@@ -19,6 +19,4 @@ EntityBase
 
     int GetRenderLayer();
     void SetRenderLayer(int _newLayer);
-
-
 }

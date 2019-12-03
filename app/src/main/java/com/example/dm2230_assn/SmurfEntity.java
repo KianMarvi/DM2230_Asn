@@ -1,12 +1,14 @@
 package com.example.dm2230_assn;
 
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.view.SurfaceView;
 
 import java.util.Random;
 
-public class SmurfEntity implements EntityBase
+public class SmurfEntity implements EntityBase, Collidable
 {
    private Sprite spritesheet = null;
    private boolean isDone = false;
@@ -16,6 +18,7 @@ public class SmurfEntity implements EntityBase
    private boolean isInit = false;
 
    private int renderLayer = 0;
+
 
    @Override
     public boolean IsDone()
@@ -30,8 +33,9 @@ public class SmurfEntity implements EntityBase
    @Override
     public void Init(SurfaceView _view)
    {
-       spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(),R.drawable.smurf_sprite), 4,4, 16);
+       spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(),R.drawable.whitebloodcell), 4,4, 16);
 
+ //     bmp = BitmapFactory.decodeResource(_view.getResources())
        Random ranGen = new Random();
 
        xPos = ranGen.nextFloat() * _view.getWidth();
@@ -41,17 +45,13 @@ public class SmurfEntity implements EntityBase
        yDir = ranGen.nextFloat() * 100.0f - 50.0f;
 
        isInit = true;
-       lifeTime = 30.0f; // Lifetime will decrease till zero, then something will happen
+       //lifeTime = 30.0f; // Lifetime will decrease till zero, then something will happen
    }
     @Override
     public void Update(float _dt)
     {
         spritesheet.Update(_dt);
-        lifeTime -= _dt;
-        if (lifeTime < 0.0f)
-        {
-            SetIsDone(true);
-        }
+
 
         if (TouchManager.Instance.IsDown()) // Detecting a touch
         {
@@ -62,7 +62,7 @@ public class SmurfEntity implements EntityBase
             // If you want to drag the character/image, TouchManager.Instance.IsMove()
 
             // Check for Collided
-            float imgRadius = spritesheet.getHeight() * 0.5f;
+            float imgRadius = spritesheet.GetHeight() * 0.5f;
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0, xPos, yPos, imgRadius))
             {
                 xPos += xDir * _dt;
@@ -76,6 +76,7 @@ public class SmurfEntity implements EntityBase
     public void Render(Canvas _canvas)
     {
         spritesheet.Render(_canvas, (int)xPos, (int)yPos);
+
     }
     @Override
     public boolean IsInit()
@@ -107,22 +108,27 @@ public class SmurfEntity implements EntityBase
         return result;
     }
 
+    @Override
     public String GetType()
     {
         return "SmurfEntity";
     }
+    @Override
     public float GetPosX()
     {
         return xPos;
     }
+    @Override
     public float GetPosY()
     {
         return yPos;
     }
+    @Override
     public float GetRadius()
     {
-        return spritesheet.getHeight() * 0.5f;
+        return spritesheet.GetHeight() * 0.5f;
     }
+    @Override
     public void OnHit (Collidable _other)
     {
         if (_other.GetType() == "SmurfEntity") // Enemy
