@@ -83,7 +83,7 @@ public class SmurfEntity implements EntityBase, Collidable
     @Override
     public void Render(Canvas _canvas)
     {
-        spritesheet.Render(_canv as, (int)xPos, (int)yPos);
+        spritesheet.Render(_canvas, (int)xPos, (int)yPos);
 
     }
     @Override
