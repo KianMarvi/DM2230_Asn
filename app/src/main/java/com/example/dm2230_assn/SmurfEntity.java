@@ -19,6 +19,8 @@ public class SmurfEntity implements EntityBase, Collidable
 
    private int renderLayer = 0;
 
+   private int health = 100;
+
    public void Move(SurfaceView _view)
    {
        spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(),R.drawable.wbc), 4,6, 30);
@@ -59,7 +61,7 @@ public class SmurfEntity implements EntityBase, Collidable
         spritesheet.Update(_dt);
 
 
-        if (TouchManager.Instance.IsDown()) // Detecting a touch
+        if (TouchManager.Instance.IsMove()) // Detecting a touch
         {
             // Detect the touch on character, then you will need to do some collision check.
             // Collision check will be based off the point of your
@@ -71,6 +73,7 @@ public class SmurfEntity implements EntityBase, Collidable
             float imgRadius = spritesheet.GetHeight() * 0.5f;
             if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0, xPos, yPos, imgRadius))
             {
+                xPos += yDir * _dt;
                 yPos += yDir * _dt;
 
                 SetIsDone(true);
@@ -80,7 +83,7 @@ public class SmurfEntity implements EntityBase, Collidable
     @Override
     public void Render(Canvas _canvas)
     {
-        spritesheet.Render(_canvas, (int)xPos, (int)yPos);
+        spritesheet.Render(_canv as, (int)xPos, (int)yPos);
 
     }
     @Override
@@ -136,9 +139,10 @@ public class SmurfEntity implements EntityBase, Collidable
     @Override
     public void OnHit (Collidable _other)
     {
-        if (_other.GetType() == "SmurfEntity") // Enemy
+        if (_other.GetType() == "BacteriaEntity") // Enemy
         {
             // Do Something here
+            health -= 1;
         }
     }
 
