@@ -1,6 +1,9 @@
 package com.example.dm2230_assn;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -17,6 +20,7 @@ public class GameView extends SurfaceView
 
     public GameView(Context _context)
     {
+
         super(_context);
         holder = getHolder();
 

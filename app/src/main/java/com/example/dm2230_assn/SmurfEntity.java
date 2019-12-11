@@ -59,26 +59,6 @@ public class SmurfEntity implements EntityBase, Collidable
     public void Update(float _dt)
     {
         spritesheet.Update(_dt);
-
-
-        if (TouchManager.Instance.IsMove()) // Detecting a touch
-        {
-            // Detect the touch on character, then you will need to do some collision check.
-            // Collision check will be based off the point of your
-            // Finger that touches the screen with the centre of the character
-
-            // If you want to drag the character/image, TouchManager.Instance.IsMove()
-
-            // Check for Collided
-            float imgRadius = spritesheet.GetHeight() * 0.5f;
-            if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0, xPos, yPos, imgRadius))
-            {
-                xPos += yDir * _dt;
-                yPos += yDir * _dt;
-
-                SetIsDone(true);
-            }
-        }
     }
     @Override
     public void Render(Canvas _canvas)

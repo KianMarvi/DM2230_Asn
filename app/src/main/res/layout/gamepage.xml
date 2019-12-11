@@ -15,18 +15,4 @@
         android:textColor="#FFFFFF"
         android:textSize="50dp" />
 
-    <Button
-        android:id="@+id/btn_moveright"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-
-        android:layout_marginEnd="628dp"
-        android:layout_marginBottom="21dp"
-        android:background="@drawable/arrow"
-        android:textColor="#FFFFFF"
-        android:textSize="18dp" />
-
-
 </RelativeLayout>
