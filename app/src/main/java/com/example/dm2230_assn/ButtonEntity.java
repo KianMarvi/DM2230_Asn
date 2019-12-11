@@ -14,7 +14,8 @@ public class ButtonEntity implements EntityBase
     private float rightButtonX, rightButtonY;
     private int ScreenWidth, ScreenHeight;
     private Bitmap btn_moveright = null;
-    private float smurfX, smurfY;
+    private float smurfX;
+    private float smurfY;
     private SmurfEntity smurf = new SmurfEntity();
 
     @Override
@@ -48,12 +49,12 @@ public class ButtonEntity implements EntityBase
         {
             if (TouchManager.Instance.IsDown())
             {
-
                 float imgRadius = btn_moveright.getHeight() * 0.5f;
                 // Check for Collided
-                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, rightButtonX, rightButtonY, imgRadius)) {
+                if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, rightButtonX, rightButtonY, imgRadius))
+                {
                     smurfX += 10.f * _dt;
-                    SetIsDone(true);
+                    //SetIsDone(true);
                 }
             }
         }

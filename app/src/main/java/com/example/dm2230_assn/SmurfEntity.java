@@ -58,6 +58,10 @@ public class SmurfEntity implements EntityBase, Collidable
     @Override
     public void Update(float _dt)
     {
+        if (GameSystem.Instance.GetIsPaused())
+        {
+            return;
+        }
         spritesheet.Update(_dt);
     }
     @Override
@@ -122,7 +126,14 @@ public class SmurfEntity implements EntityBase, Collidable
         if (_other.GetType() == "BacteriaEntity") // Enemy
         {
             // Do Something here
-            health -= 1;
+            //health -= 1;
+
+           /* if (health <= 0)
+            {
+                StateManager.Instance.ChangeState("MainMenu");
+            }
+            */
+
         }
     }
 

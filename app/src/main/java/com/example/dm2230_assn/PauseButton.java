@@ -50,11 +50,12 @@ public class PauseButton implements EntityBase
     {
         if (TouchManager.Instance.HasTouch()) // Detecting a touch
         {
-            if (TouchManager.Instance.IsDown() && !pause)
+            if (TouchManager.Instance.IsDown())
             {
                 // Check Collision
 
                 float imgRadius = bmpPause.getHeight() * 0.5f;
+
 
                 // Check for Collided
                 if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, xPos, yPos, imgRadius))
@@ -63,16 +64,18 @@ public class PauseButton implements EntityBase
 
                     // Option 1 = use your alert dialog to ask user if they want to pause
                     // Button is clicked then show the popup
-                    if (PauseConfirmDialog.IsShown) {
+                    if (PauseConfirmDialog.IsShown)
                         return;
-                    }
+
 
                     PauseConfirmDialog newPauseConfirm = new PauseConfirmDialog();
                     newPauseConfirm.show(GamePage.Instance.getFragmentManager(), "PauseConfirm");
+
+
                     //smurfX += 10.f * _dt;
 
                     // Option 2 = Don't have the alert dialog, just pause
-                  //  GameSystem.Instance.GetIsPaused(!GameSystem.Instance.GetIsPaused());
+                  // GameSystem.Instance.GetIsPaused(!GameSystem.Instance.GetIsPaused());
                 }
             }
         }

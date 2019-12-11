@@ -1,70 +1,42 @@
 package com.example.dm2230_assn;
+
+// Created by TanSiewLan2019
+// Create a GamePage is an activity class used to hold the GameView which will have a surfaceview
+
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 
-public class GamePage extends Activity implements View.OnClickListener
+public class GamePage extends Activity
 {
-    // Define a few parameters
-    protected boolean _active = true;
-    public final static GamePage Instance = new GamePage();
-    float dt = 1.f;
 
-    @Override // An annotation to assure that the subclass method is overriding the parent class method.
-    // If it is not able to do so, compile with error will occur.
-    protected void onCreate(Bundle savedInstancedState)
-    {
-        super.onCreate(savedInstancedState);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide the title upon the display. As we are creating a game, we do not need that
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
-        setContentView(new GameView(this)); // Scrollable background
-
-
-        Thread gameThread = new Thread()
-        {
-            public void run()
-            {
-                if (!_active)
-                {
-                    finish();
-                    // Create new activity based on and intent to do with the current activity.
-                    // Go to Main Menu when time is up.
-                    Intent intent = new Intent(GamePage.this, MainMenu.class);
-                    startActivity(intent);
-                }
-            }
-        };// Create a new instance of an object for this case is a thread
-        gameThread.start(); // To start the thread running
-    }
-
+    public static GamePage Instance = null;
 
     @Override
-    public void onClick(View v)
-    {
-        // Why boolean is because either YES or NO on if touch of the screen by user input.
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-       // return true; // From the touch event.
+        //To make fullscreen
+        requestWindowFeature(Window.FEATURE_NO_TITLE); // Hide titlebar
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);  // Hide topbar
 
+        Instance = this;
+
+        setContentView(new GameView(this)); // Surfaceview = GameView
     }
 
     @Override
-    protected void onPause()
+    public boolean onTouchEvent(MotionEvent event)
     {
-        super.onPause();
-    }
-    @Override
-    protected void onStop() { super.onStop(); }
-    @Override
-    protected void onDestroy()
-    {
-        super.onDestroy();
+        // WE are hijacking the touch event into our own system
+        int x = (int) event.getX();
+        int y = (int) event.getY();
+
+        TouchManager.Instance.Update(x, y, event.getAction());
+
+        return true;
     }
 }
+

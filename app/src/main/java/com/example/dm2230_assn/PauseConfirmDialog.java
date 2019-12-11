@@ -2,10 +2,10 @@ package com.example.dm2230_assn;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import androidx.fragment.app.DialogFragment;
 
 public class PauseConfirmDialog extends DialogFragment
 {
