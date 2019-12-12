@@ -11,12 +11,16 @@ public class ButtonEntity implements EntityBase
 {
     private boolean isDone = false;
     private boolean isInit = false;
-    private float rightButtonX, rightButtonY;
+    private float rightButtonX, rightButtonY = 0;
     private int ScreenWidth, ScreenHeight;
     private Bitmap btn_moveright = null;
-    private float smurfX;
-    private float smurfY;
-    private SmurfEntity smurf = new SmurfEntity();
+    float smurfX, smurfY;
+    public boolean Moved;
+    private SmurfEntity smurf;
+
+    {
+        smurf = new SmurfEntity();
+    }
 
     @Override
     public boolean IsDone()
@@ -36,7 +40,7 @@ public class ButtonEntity implements EntityBase
         ScreenWidth = metrics.widthPixels;
         ScreenHeight = metrics.heightPixels;
         btn_moveright = Bitmap.createScaledBitmap((BitmapFactory.decodeResource(_view.getResources(), R.drawable.arrow)), ScreenWidth / 10,  (ScreenHeight) / 5, true);
-
+        Moved = false;
         rightButtonX =  _view.getWidth() * 0.25f;
         rightButtonY =  _view.getHeight() * 0.75f;
         smurfX = smurf.GetPosX();
@@ -47,17 +51,18 @@ public class ButtonEntity implements EntityBase
     {
         if (TouchManager.Instance.HasTouch()) // Detecting a touch
         {
-            if (TouchManager.Instance.IsDown())
+            if (TouchManager.Instance.IsDown() && !Moved)
             {
                 float imgRadius = btn_moveright.getHeight() * 0.5f;
                 // Check for Collided
                 if (Collision.SphereToSphere(TouchManager.Instance.GetPosX(), TouchManager.Instance.GetPosY(), 0.0f, rightButtonX, rightButtonY, imgRadius))
                 {
-                    smurfX += 10.f * _dt;
-                    //SetIsDone(true);
+
                 }
             }
         }
+        else
+            Moved = false;
     }
     @Override
     public void Render(Canvas _canvas)

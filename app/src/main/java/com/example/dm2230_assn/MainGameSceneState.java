@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.view.SurfaceView;
 
+import java.util.prefs.BackingStoreException;
+
 // Created by TanSiewLan2019
 
 public class MainGameSceneState implements StateBase
@@ -21,9 +23,10 @@ public class MainGameSceneState implements StateBase
     public void OnEnter(SurfaceView _view)
     {
         RenderBackground.Create();
-        ButtonEntity.Create();
+       // ButtonEntity.Create();
         PauseButton.Create();
         SmurfEntity.Create();
+        BacteriaEntity.Create();
         // Example to include another Renderview for Pause Button
     }
 

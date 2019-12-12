@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.view.SurfaceView;
+import android.widget.Button;
 
 import java.util.Random;
 
@@ -13,22 +14,26 @@ public class SmurfEntity implements EntityBase, Collidable
    private Sprite spritesheet = null;
    private boolean isDone = false;
 
-   private float xPos, yPos, xDir, yDir, lifeTime;
+   private float xPos, yPos, xDir, yDir, lifeTime = 0;
+
+   public float ElapsedTime, TimeToShoot;
 
    private boolean isInit = false;
 
-   private int renderLayer = 0;
+   private int renderLayer = LayerConstants.GAMEOBJECTS_LAYER;
 
    private int health = 100;
+    Projectile projectile = null;
+
+
+
+
 
    public void Move(SurfaceView _view)
    {
        spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(),R.drawable.wbc), 4,6, 30);
    }
-    public void Idle(SurfaceView _view)
-    {
-        spritesheet = new Sprite(BitmapFactory.decodeResource(_view.getResources(), R.drawable.wbc_stationary), 1,1, 0);
-    }
+
 
 
    @Override
@@ -46,7 +51,7 @@ public class SmurfEntity implements EntityBase, Collidable
    {
         Move(_view);
 
-       xPos =  _view.getWidth() * 0.5f;
+       xPos =  _view.getWidth() * 0.25f;
        yPos =  _view.getHeight() * 0.5f;
 
        xDir =  100.0f - 50.0f;
@@ -58,17 +63,33 @@ public class SmurfEntity implements EntityBase, Collidable
     @Override
     public void Update(float _dt)
     {
-        if (GameSystem.Instance.GetIsPaused())
-        {
-            return;
-        }
         spritesheet.Update(_dt);
+
+        // Movement Code
+        float move = _dt * 500;
+        if (TouchManager.Instance.HasTouch()) // Head to the direction of where the player has click on the screen
+        {
+            if (TouchManager.Instance.GetPosY() > yPos) {
+                if ((TouchManager.Instance.GetPosY() - yPos) < move)
+                    yPos = TouchManager.Instance.GetPosY();
+                else
+                    yPos += move;
+            } else if (TouchManager.Instance.GetPosY() < yPos)
+            {
+                if ((yPos - TouchManager.Instance.GetPosY()) < move)
+                    yPos = TouchManager.Instance.GetPosY();
+                else
+                    yPos -= move;
+            }
+        }
     }
     @Override
     public void Render(Canvas _canvas)
     {
         spritesheet.Render(_canvas, (int)xPos, (int)yPos);
 
+
+        // Transformation
     }
     @Override
     public boolean IsInit()
@@ -125,15 +146,8 @@ public class SmurfEntity implements EntityBase, Collidable
     {
         if (_other.GetType() == "BacteriaEntity") // Enemy
         {
-            // Do Something here
-            //health -= 1;
-
-           /* if (health <= 0)
-            {
-                StateManager.Instance.ChangeState("MainMenu");
-            }
-            */
-
+            StateManager.Instance.ChangeState("MainMenu");
+            StateManager.Instance.Clean();
         }
     }
 
